@@ -13,25 +13,10 @@ header {
     box-sizing: border-box;
 }
 
-nav {
-    margin: 1rem 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-
-.vendor-button {
-    background-color: #444;
-    border: none;
-    color: #fff;
-    padding: 0.5rem 1rem;
-    margin: 0 0.5rem;
-    cursor: pointer;
-}
-
-.vendor-button.active,
-.vendor-button:hover {
-    background-color: #666;
+input[type="text"] {
+    margin-top: 1rem;
+    padding: 0.5rem;
+    font-size: 1rem;
 }
 
 main {
@@ -59,6 +44,10 @@ thead {
     background-color: #f4f4f4;
 }
 
+tfoot {
+    font-weight: bold;
+}
+
 footer {
     background-color: #333;
     color: #fff;
@@ -84,23 +73,6 @@ button:hover {
 }
 
 @media (max-width: 768px) {
-    header {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-    nav {
-        flex-direction: column;
-        margin-top: 1rem;
-    }
-
-    .vendor-button {
-        margin: 0.5rem 0;
-    }
-
     table {
         display: block;
         width: 100%;
