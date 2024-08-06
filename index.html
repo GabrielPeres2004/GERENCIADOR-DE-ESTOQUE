@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciador de Estoque</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.22/jspdf.plugin.autotable.min.js"></script>
+    <script src="./JS/script.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1 id="vendedor-title">Valdir</h1>
+        <nav>
+            <button id="valdir" class="vendor-button">Valdir</button>
+            <button id="fabio" class="vendor-button">Fabio</button>
+            <button id="barbacena" class="vendor-button">Barbacena</button>
+            <button id="coimbra" class="vendor-button">Coimbra</button>
+        </nav>
+    </header>
+
+    <main>
+        <table id="product-table">
+            <thead>
+                <tr>
+                    <th>Produto</th>
+                    <th>Unidade</th>
+                    <th>Preço</th>
+                    <th>Entrada</th>
+                    <th>Saída</th>
+                    <th>Estoque</th>
+                </tr>
+            </thead>
+            <tbody id="product-tbody">
+                <!-- Dados da tabela aqui -->
+            </tbody>
+        </table>
+    </main>
+
+    <footer>
+        <button id="download-pdf">Baixar PDF</button>
+    </footer>
+</body>
+
+</html>
