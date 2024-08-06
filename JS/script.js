@@ -46,6 +46,7 @@ const initialData = vendors.reduce((acc, vendor) => {
 let currentVendor = 'valdir';
 
 document.addEventListener('DOMContentLoaded', () => {
+    loadFromLocalStorage();
     loadVendorData();
     setupEventListeners();
 });
@@ -62,6 +63,7 @@ function loadVendorData() {
             <td><input type="number" value="${product.entrada}" data-product="${product.nome}" data-unidade="${product.unidade}" class="entrada"></td>
             <td><input type="number" value="${product.saida}" data-product="${product.nome}" data-unidade="${product.unidade}" class="saida"></td>
             <td class="estoque">${Math.max(product.entrada - product.saida, 0)}</td>
+            <td class="total">${(Math.max(product.entrada - product.saida, 0) * product.preco).toFixed(2)}</td>
         </tr>`
     ).join('');
 
@@ -103,8 +105,11 @@ function updateInventory() {
             } else if (input.classList.contains('saida')) {
                 product.saida = value;
             }
-            input.closest('tr').querySelector('td.estoque').textContent = Math.max(product.entrada - product.saida, 0);
+            const estoque = Math.max(product.entrada - product.saida, 0);
+            input.closest('tr').querySelector('td.estoque').textContent = estoque;
+            input.closest('tr').querySelector('td.total').textContent = (estoque * product.preco).toFixed(2);
         }
+        saveToLocalStorage();
     });
 }
 
@@ -137,4 +142,27 @@ function downloadPDF() {
     });
 
     doc.save(`estoque_${vendorName}.pdf`);
+}
+
+function saveToLocalStorage() {
+    localStorage.setItem('vendorData', JSON.stringify(initialData));
+}
+
+function loadFromLocalStorage() {
+    const savedData = localStorage.getItem('vendorData');
+    if (savedData) {
+        const parsedData = JSON.parse(savedData);
+        Object.keys(parsedData).forEach(vendor => {
+            parsedData[vendor].forEach(product => {
+                const productKey = `${vendor}-${product.nome}-${product.unidade}`;
+                if (initialData[vendor]) {
+                    const prod = initialData[vendor].find(p => p.nome === product.nome && p.unidade === product.unidade);
+                    if (prod) {
+                        prod.entrada = product.entrada;
+                        prod.saida = product.saida;
+                    }
+                }
+            });
+        });
+    }
 }

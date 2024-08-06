@@ -21,7 +21,6 @@
             <button id="coimbra" class="vendor-button">Coimbra</button>
         </nav>
     </header>
-
     <main>
         <table id="product-table">
             <thead>
@@ -32,14 +31,20 @@
                     <th>Entrada</th>
                     <th>Saída</th>
                     <th>Estoque</th>
+                    <th>Preço Total</th>
                 </tr>
             </thead>
             <tbody id="product-tbody">
-                <!-- Dados da tabela aqui -->
+
             </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="6">Total</td>
+                    <td id="total-price">0</td>
+                </tr>
+            </tfoot>
         </table>
     </main>
-
     <footer>
         <button id="download-pdf">Baixar PDF</button>
     </footer>
